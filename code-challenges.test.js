@@ -29,11 +29,22 @@ describe("nocchi", () => {
 
 /* Psuedo Code:
 - Create a function called nocchi
-- The function will input a number (to be it's index of the new array)
+- The function will take a number (to be it's index of the new array)
+- The new array will be known as fibArr
+- [1, 1] is to return the same 0, 1 indexes so that the fibonacci sequence can start after that
+- Iterate over until the given number is met
 - Output the length of that number in indexes using the fibonacci sequence
 */
 
 // b) Create the function that makes the test pass.
+
+let nocchi = (number) => {
+        let fibArr = [1, 1]
+        for (let i=2; i < number; i++) {
+                fibArr.push(fibArr[i-2] + fibArr[i-1])
+        }
+        return fibArr
+}
 
 
 // --------------------2) Create a function that takes in an array and returns a new array of only odd numbers sorted from least to greatest.
@@ -54,32 +65,26 @@ describe("leastToGreatest", () => {
 
 /* Psuedo Code:
 - Create a function called leastToGreatest
-- The function will iterate over the values and return only odds
-- Then the values will be sorted from least to greatest
-- In a new array
+- The function will iterate over the values (.filter) to search for and return only odds numbers
+- Then the values will be sorted (.sort) from least to greatest
+- Giving a new array as the output
 */
 
 // b) Create the function that makes the test pass.
 
+// const leastToGreatest = (array) => {
+//         let filteredArr = array.filter(value => value % 2 !== 0 && typeof value === "number")
+// }
 
-// const odds = (array) => {
-//     return array.filter(value => value % 2 != 0)
-//   }
-//   console.log(odds(fullArr1))
+// I had to look at my notes to give my path a direction
+
+
+const leastToGreatest = (array) => {
+    return array.filter(value => value % 2 !== 0 && typeof value === "number").sort((a,b) => a-b)
+}
+//   console.log(leastToGreatest(fullArr1));
+//   console.log(leastToGreatest(fullArr2));
   
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // --------------------3) Create a function that takes in an array and returns an array of the accumulating sum. An empty array should return an empty array.
 
@@ -92,10 +97,10 @@ describe("additionArray", () => {
         const numbersToAdd2 = [0, 7, -8, 12]
          // Expected output: [0, 7, -1, 11]
         const numbersToAdd3 = []
-//         // Expected output: []
-      expect(addArray(numbersToAdd1)).toEqual([2, 6, 51, 60])
-      expect(addArray(numbersToAdd2)).toEqual([0, 7, -1, 11])
-      expect(addArray(numbersToAdd3)).toEqual([])
+        // Expected output: []
+      expect(additionArray(numbersToAdd1)).toEqual([2, 6, 51, 60])
+      expect(additionArray(numbersToAdd2)).toEqual([0, 7, -1, 11])
+      expect(additionArray(numbersToAdd3)).toEqual([])
     })
   })
 //   ReferenceError: additionArray is not defined
@@ -104,21 +109,20 @@ describe("additionArray", () => {
 - Create a function called additionArray
 - The function will take in an array
 - The function "additionArray" will add the last value to the next
-- It will return a new array of the same length, of the accumulating sum of the given array
+- It will return a new array of the same length (.map), of the accumulating sum of the given array
 - It will return an empty array if given an empty array
 */
 
 // b) Create the function that makes the test pass.
-// const addArray = (arr) => {
-//     let additionArray = []
-//     for (let i = 0; i < arr.legnth; i++) {
-//         let sum = 0 
-//         for (let j=0; j <= i; j++) {
-//             sum += arr[j]
-//         }
-//         additionArray.push(sum)
-//     }
-//     return additionArray
-// }
+// const numbersToAdd1 = [2, 4, 45, 9]
+// const numbersToAdd2 = [0, 7, -8, 12]
+// const numbersToAdd3 = []
+// These were to check my console.logs
 
-// console.log(addArray(numbersToAdd1));
+const additionArray = (array) => {
+    let sum = 0
+    return array.map(value => sum += value)
+}
+// console.log(additionArray(numbersToAdd1));
+// console.log(additionArray(numbersToAdd2));
+// console.log(additionArray(numbersToAdd3));
